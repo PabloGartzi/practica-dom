@@ -130,8 +130,8 @@ const pintarBanner = () => {
     const indice = aleatorio()
     const elemento = arrayBanners[indice]
 
-    imagenBanner.setAttribute('src', elemento.src)
-    imagenBanner.alt = elemento.alt
+    imagenBanner.src = elemento.src;
+    imagenBanner.alt = elemento.alt;
 }
 
 function pintarCards(){
@@ -157,8 +157,8 @@ function pintarCards(){
         var newDiv = document.createElement("div");
         
         var newImg = document.createElement("img");
-        newImg.setAttribute('src', element.src);
-        newImg.alt= element.alt; //Preguntar diferencia.
+        newImg.src = element.src;
+        newImg.alt= element.alt;
 
         var newH3 = document.createElement("h3");
         newH3.textContent = element.titulo
@@ -177,7 +177,7 @@ function pintarDestinos(){
     var fragmento = document.createDocumentFragment();
     arrayDestinos.forEach((element) => {
         var newOpcion = document.createElement("option");
-        newOpcion.setAttribute('value',element.valor);
+        newOpcion.value = element.valor;
         newOpcion.textContent = element.valor;
         fragmento.append(newOpcion);
     });
