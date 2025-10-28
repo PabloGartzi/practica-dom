@@ -3,10 +3,13 @@
 const imagenBanner = document.querySelector('#bienvenidos img');
 
 /* Acceder al elemento del DOM para crear los artículos de viajes */
-const imagenesViajes = document.querySelector('.flexContainer');
+const imagenesViajes = document.querySelector('#recomendados .flexContainer');
 
 /* Acceder al elemento del DOM para crear añadir los options */
 const opcionesDestino = document.querySelector('#destinos>div>select');
+const urlBase = "assets";
+
+const fragment = document.createDocumentFragment();
 
 const arrayBanners = [
     {
@@ -53,7 +56,7 @@ const arrayBanners = [
 const arrayViajes = [
     {
         id: 1,
-        src: 'assets/viajes/viajes-1.jpg',
+        src: `${urlBase}/viajes/viajes-1.jpg`,
         alt: 'Banner uno',
         titulo: 'Playa',
         descripcion: 'Hamaca en la playa'
@@ -120,14 +123,14 @@ const arrayDestinos = [
 /* EVENTOS */
 
 /* FUNCIONES */
-const aleatorio = () => {
-    const indice = Math.floor(Math.random() * (arrayBanners.length));
+const aleatorio = (array) => {
+    const indice = Math.floor(Math.random() * (array.length));
     return indice
 }
 
 const pintarBanner = () => {
 
-    const indice = aleatorio()
+    const indice = aleatorio(arrayBanners)
     const elemento = arrayBanners[indice]
 
     imagenBanner.src = elemento.src;
@@ -151,37 +154,35 @@ function pintarCards(){
     /* dejo de recorrer el array */
 
     /* añadir el fragmento al div flexContainer */ 
-    var fragmento = document.createDocumentFragment();
     arrayViajes.forEach((element) => {
-        var newArticle = document.createElement("article");
-        var newDiv = document.createElement("div");
+        const newArticle = document.createElement("ARTICLE");
+        const newDiv = document.createElement("DIV");
         
-        var newImg = document.createElement("img");
+        const newImg = document.createElement("IMG");
         newImg.src = element.src;
-        newImg.alt= element.alt;
+        newImg.alt = element.alt;
 
-        var newH3 = document.createElement("h3");
+        const newH3 = document.createElement("H3");
         newH3.textContent = element.titulo
 
-        var newP = document.createElement("p");
+        const newP = document.createElement("P");
         newP.textContent = element.descripcion
 
         newDiv.append(newImg);
         newArticle.append(newDiv, newH3, newP);
 
-        fragmento.append(newArticle);
+        fragment.append(newArticle);
     });
-    imagenesViajes.append(fragmento);
+    imagenesViajes.append(fragment);
 }
 function pintarDestinos(){
-    var fragmento = document.createDocumentFragment();
     arrayDestinos.forEach((element) => {
-        var newOpcion = document.createElement("option");
+        var newOpcion = document.createElement("OPTION");
         newOpcion.value = element.valor;
         newOpcion.textContent = element.valor;
-        fragmento.append(newOpcion);
+        fragment.append(newOpcion);
     });
-    opcionesDestino.append(fragmento);
+    opcionesDestino.append(fragment);
 }
 
 
