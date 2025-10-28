@@ -179,7 +179,7 @@ function pintarDestinos(){
     arrayDestinos.forEach((element) => {
         var newOpcion = document.createElement("OPTION");
         newOpcion.value = element.valor;
-        newOpcion.textContent = element.valor;
+        newOpcion.textContent = element.valor; //el option también tiene una propiedad que es text: newOpcion.text = element.valor;
         fragment.append(newOpcion);
     });
     opcionesDestino.append(fragment);
